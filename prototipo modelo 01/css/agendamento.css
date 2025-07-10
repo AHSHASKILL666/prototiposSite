@@ -277,7 +277,7 @@ body {
 }
 
 .time-slot.booked::after {
-    content: "Ocupado";
+    content: "indisponível";
     position: absolute;
     top: 50%;
     left: 50%;
