@@ -1,0 +1,414 @@
+:root {
+    /* Cores suaves e orgânicas */
+    --primary: #4CAF50;
+    --primary-light: #66BB6A;
+    --primary-dark: #388E3C;
+    --accent: #FF9800;
+    --text: #2D3748;
+    --text-light: #718096;
+    --background: #F8F9FA;
+    --card-bg: #FFFFFF;
+    --shadow: rgba(0, 0, 0, 0.05);
+    --shadow-hover: rgba(0, 0, 0, 0.1);
+    --border-light: #E2E8F0;
+    --success: #38A169;
+    --warning: #E53E3E;
+    --highlight: #FFF9C4;
+    --disabled: #CBD5E0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    background: var(--card-bg);
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    padding: 24px;
+}
+
+/* Header com botão fechar */
+.header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.close-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--background);
+    color: var(--text-light);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.close-button:hover {
+    background: var(--warning);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Imagem ilustrativa */
+.illustration-container {
+    margin-bottom: 24px;
+}
+
+.illustration-placeholder {
+    height: 120px;
+    background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-light);
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+    gap: 8px;
+}
+
+.illustration-placeholder i {
+    font-size: 32px;
+    color: var(--primary);
+}
+
+/* Container do calendário */
+.calendar-container {
+    background: var(--background);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 18px var(--shadow);
+}
+
+/* Calendário */
+.calendar {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.nav-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: var(--background);
+    color: var(--text);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: var(--primary-light);
+    color: white;
+    transform: scale(1.1);
+}
+
+.month-year {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 1px;
+}
+
+/* Dias da semana */
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.weekday {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-light);
+    padding: 8px 4px;
+    letter-spacing: 0.5px;
+}
+
+/* Grade de dias */
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--background);
+    color: var(--text);
+}
+
+.day:hover:not(.disabled):not(.empty) {
+    background: var(--primary-light);
+    color: white;
+    transform: scale(1.1);
+}
+
+.day.selected {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.day.today {
+    background: var(--accent);
+    color: white;
+}
+
+.day.disabled {
+    background: var(--disabled);
+    color: #A0AEC0;
+    cursor: not-allowed;
+}
+
+.day.empty {
+    background: transparent;
+    cursor: default;
+}
+
+/* Horários disponíveis */
+.time-slots {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.time-slot-header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.time-slot-header span {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 1px;
+}
+
+.time-slot-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+}
+
+.time-slot {
+    padding: 12px 16px;
+    background: var(--background);
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.time-slot:hover:not(.booked) {
+    background: var(--primary-light);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+}
+
+.time-slot.selected {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary-dark);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.time-slot.booked {
+    background: var(--disabled);
+    color: #A0AEC0;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.time-slot.booked::after {
+    content: "Ocupado";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+    font-weight: 600;
+    background: var(--warning);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.time {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.no-date {
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+    padding: 20px;
+}
+
+/* Footer */
+.footer {
+    margin-top: 10px;
+}
+
+.finalize-button {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 16px;
+    background: var(--disabled);
+    color: #A0AEC0;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: not-allowed;
+    transition: all 0.3s ease;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.finalize-button.active {
+    background: linear-gradient(to right, var(--primary), var(--primary-dark));
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.finalize-button.active:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(76, 175, 80, 0.5);
+    background: linear-gradient(to right, var(--primary-dark), var(--primary));
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+        border-radius: 20px;
+    }
+    
+    .calendar-container {
+        padding: 16px;
+    }
+    
+    .calendar {
+        padding: 16px;
+    }
+    
+    .time-slots {
+        padding: 16px;
+    }
+    
+    .month-year {
+        font-size: 16px;
+    }
+    
+    .time-slot-list {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 8px;
+    }
+    
+    .time-slot {
+        padding: 10px 12px;
+    }
+    
+    .time {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 12px;
+    }
+    
+    .calendar-container {
+        padding: 12px;
+    }
+    
+    .calendar {
+        padding: 12px;
+    }
+    
+    .time-slots {
+        padding: 12px;
+    }
+    
+    .weekday {
+        font-size: 10px;
+        padding: 6px 2px;
+    }
+    
+    .day {
+        font-size: 12px;
+    }
+    
+    .time-slot-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .finalize-button {
+        padding: 16px;
+        font-size: 14px;
+    }
+}
+

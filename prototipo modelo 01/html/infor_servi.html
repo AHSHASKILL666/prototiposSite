@@ -66,17 +66,24 @@
 
         <!-- Informações do serviço -->
         <div class="service-info">
-            <div class="service-header">
-                <div class="service-details">
-                    <h1 class="service-title">NOME DO SERVIÇO</h1>
-                    <div class="service-pricing">
-                        <span class="price-label">R$</span>
-                        <span class="price-value">VALOR</span>
-                    </div>
+            <h2 class="service-name">Corte Masculino Premium</h2>
+            <div class="service-actions">
+                <div class="price-container">
+                    <span class="price-label">R$</span>
+                    <span class="price-value">45,00</span>
                 </div>
-                <button class="schedule-btn">
-                    AGENDAR PEDIDO
-                </button>
+                <div class="quantity-container">
+                    <button class="quantity-btn minus" id="quantity-minus">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="quantity-display" id="quantity-display">1</span>
+                    <button class="quantity-btn plus" id="quantity-plus">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="add-to-cart-btn" id="add-to-cart">
+                        ADICIONAR
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -120,78 +127,7 @@
         </div>
     </div>
 
-    <script>
-        // JavaScript para o carrossel
-        document.addEventListener('DOMContentLoaded', function() {
-            const track = document.getElementById('carousel-track');
-            const slides = document.querySelectorAll('.carousel-slide');
-            const indicators = document.querySelectorAll('.indicator');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            let currentSlide = 0;
-
-            function updateCarousel() {
-                // Atualizar posição do track
-                track.style.transform = `translateX(-${currentSlide * 100}%)`;
-                
-                // Atualizar slides ativos
-                slides.forEach((slide, index) => {
-                    slide.classList.toggle('active', index === currentSlide);
-                });
-                
-                // Atualizar indicadores
-                indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === currentSlide);
-                });
-            }
-
-            // Botão anterior
-            prevBtn.addEventListener('click', function() {
-                currentSlide = currentSlide > 0 ? currentSlide - 1 : slides.length - 1;
-                updateCarousel();
-            });
-
-            // Botão próximo
-            nextBtn.addEventListener('click', function() {
-                currentSlide = currentSlide < slides.length - 1 ? currentSlide + 1 : 0;
-                updateCarousel();
-            });
-
-            // Indicadores
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', function() {
-                    currentSlide = index;
-                    updateCarousel();
-                });
-            });
-
-            // Auto-play (opcional)
-            setInterval(function() {
-                currentSlide = currentSlide < slides.length - 1 ? currentSlide + 1 : 0;
-                updateCarousel();
-            }, 5000);
-
-            // JavaScript para o botão "Saiba Mais"
-            const learnMoreBtn = document.getElementById('learn-more-btn');
-            const expandedContent = document.getElementById('expanded-content');
-            const chevronIcon = learnMoreBtn.querySelector('.fa-chevron-down');
-
-            learnMoreBtn.addEventListener('click', function() {
-                const isExpanded = expandedContent.classList.contains('expanded');
-                
-                if (isExpanded) {
-                    // Recolher
-                    expandedContent.classList.remove('expanded');
-                    chevronIcon.style.transform = 'rotate(0deg)';
-                    learnMoreBtn.querySelector('i').className = 'fas fa-chevron-down';
-                } else {
-                    // Expandir
-                    expandedContent.classList.add('expanded');
-                    chevronIcon.style.transform = 'rotate(180deg)';
-                    learnMoreBtn.querySelector('i').className = 'fas fa-chevron-up';
-                }
-            });
-        });
+    <script src="../script/infor_servi.js">   
     </script>
 </body>
 </html>

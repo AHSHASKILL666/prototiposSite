@@ -263,28 +263,86 @@ body {
 .price-value {
     font-size: 20px;
     font-weight: 700;
-    color: var(--primary-dark);
+    color: var(--text);
 }
 
-.schedule-btn {
-    padding: 16px 32px;
+/* Container de quantidade e botão adicionar */
+.quantity-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Botões de quantidade */
+.quantity-btn {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--border-light);
+    background: var(--card-bg);
+    color: var(--text);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-family: 'Nunito', sans-serif;
+}
+
+.quantity-btn:hover {
+    background: var(--primary-light);
+    color: white;
+    border-color: var(--primary-light);
+    transform: scale(1.05);
+}
+
+.quantity-btn:active {
+    transform: scale(0.95);
+}
+
+.quantity-btn.minus:hover {
+    background: var(--warning);
+    border-color: var(--warning);
+}
+
+/* Display da quantidade */
+.quantity-display {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    min-width: 24px;
+    text-align: center;
+    padding: 0 8px;
+}
+
+/* Botão adicionar ao carrinho */
+.add-to-cart-btn {
+    padding: 12px 24px;
     border: none;
-    border-radius: 16px;
+    border-radius: 12px;
     background: linear-gradient(to right, var(--primary), var(--primary-dark));
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
     font-family: 'Nunito', sans-serif;
     letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    flex-shrink: 0;
 }
 
-.schedule-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.5);
+.add-to-cart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
     background: linear-gradient(to right, var(--primary-dark), var(--primary));
+}
+
+.add-to-cart-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
 }
 
 /* Seção de descrição */

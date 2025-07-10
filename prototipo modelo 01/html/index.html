@@ -85,7 +85,7 @@
                 <div class="service-image green">
                     <i class="fas fa-spa"></i>
                 </div>
-                <div class="service-details">
+                <div class="service-details" onclick="visualizar()">
                     <div class="service-name">Corte Masculino Premium</div>
                     <div class="service-price">R$ 45,00</div>
                     <span class="promo-tag">15% OFF</span>
@@ -99,7 +99,7 @@
                 <div class="service-image orange">
                     <i class="fas fa-cut"></i>
                 </div>
-                <div class="service-details">
+                <div class="service-details" onclick="visualizar()">
                     <div class="service-name">Barba Completa</div>
                     <div class="service-price">R$ 35,00</div>
                 </div>
@@ -112,7 +112,7 @@
                 <div class="service-image purple">
                     <i class="fas fa-air-freshener"></i>
                 </div>
-                <div class="service-details">
+                <div class="service-details" onclick="visualizar()">
                     <div class="service-name">Hidratação Capilar</div>
                     <div class="service-price">R$ 60,00</div>
                     <span class="promo-tag">PACOTE 3 SESSÕES</span>
@@ -125,63 +125,89 @@
 
         <!-- Footer com botão de agendamento e carrinho -->
         <footer class="footer">
-            <button class="schedule-button">
+            <button class="schedule-button" onclick="finalizar()">
                 AGENDAR SERVIÇOS
             </button>
-            <div class="cart-container">
+            <div class="cart-container" id="cart-container">
                 <i class="fas fa-shopping-cart cart-icon"></i>
-                <span class="cart-count">2</span>
+                <span class="cart-count" id="cart-count">2</span>
             </div>
         </footer>
+
+        <!-- Modal do Carrinho -->
+        <div class="cart-modal" id="cart-modal">
+            <div class="cart-overlay" id="cart-overlay"></div>
+            <div class="cart-content">
+                <div class="cart-header">
+                    <h3>Itens Selecionados</h3>
+                    <button class="cart-close" id="cart-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="cart-items" id="cart-items">
+                    <!-- Item 1 -->
+                    <div class="cart-item" data-id="1">
+                        <div class="cart-item-image green">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">Corte Masculino Premium</div>
+                            <div class="cart-item-price">R$ 45,00</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="quantity-btn minus" data-action="decrease" data-id="1">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn plus" data-action="increase" data-id="1">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <button class="remove-item" data-id="1">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="cart-item" data-id="2">
+                        <div class="cart-item-image orange">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">Barba Completa</div>
+                            <div class="cart-item-price">R$ 35,00</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="quantity-btn minus" data-action="decrease" data-id="2">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn plus" data-action="increase" data-id="2">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <button class="remove-item" data-id="2">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cart-footer">
+                    <div class="cart-total">
+                        <span class="total-label">Total:</span>
+                        <span class="total-value" id="cart-total">R$ 80,00</span>
+                    </div>
+                    <button class="cart-checkout">
+                        FINALIZAR PEDIDO
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script>
-        // JavaScript para controlar a animação do dropdown
-        document.addEventListener('DOMContentLoaded', function() {
-            const filtrosBtn = document.getElementById('filtros-btn');
-            const dropdownContainer = document.getElementById('dropdown-container');
-            const chevronIcon = filtrosBtn.querySelector('.chevron-icon');
-            
-            filtrosBtn.addEventListener('click', function() {
-                const isOpen = dropdownContainer.classList.contains('open');
-                
-                if (isOpen) {
-                    // Fechar dropdown
-                    dropdownContainer.classList.remove('open');
-                    chevronIcon.style.transform = 'rotate(0deg)';
-                } else {
-                    // Abrir dropdown
-                    dropdownContainer.classList.add('open');
-                    chevronIcon.style.transform = 'rotate(180deg)';
-                }
-            });
-
-            // Fechar dropdown ao clicar fora
-            document.addEventListener('click', function(event) {
-                if (!filtrosBtn.contains(event.target) && !dropdownContainer.contains(event.target)) {
-                    dropdownContainer.classList.remove('open');
-                    chevronIcon.style.transform = 'rotate(0deg)';
-                }
-            });
-
-            // Adicionar funcionalidade aos botões de categoria
-            const categoryBtns = document.querySelectorAll('.category-btn');
-            categoryBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active de todos os botões
-                    categoryBtns.forEach(b => b.classList.remove('active'));
-                    // Adiciona active ao botão clicado
-                    this.classList.add('active');
-                    
-                    // Opcional: fechar dropdown após seleção
-                    dropdownContainer.classList.remove('open');
-                    chevronIcon.style.transform = 'rotate(0deg)';
-                });
-            });
-        });
+    <script src="../script/index.js">
     </script>
 </body>
 </html>
-
-
 
