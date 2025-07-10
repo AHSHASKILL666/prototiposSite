@@ -1,0 +1,412 @@
+:root {
+    /* Cores suaves e orgânicas */
+    --primary: #4CAF50;
+    --primary-light: #66BB6A;
+    --primary-dark: #388E3C;
+    --accent: #FF9800;
+    --text: #2D3748;
+    --text-light: #718096;
+    --background: #F8F9FA;
+    --card-bg: #FFFFFF;
+    --shadow: rgba(0, 0, 0, 0.05);
+    --shadow-hover: rgba(0, 0, 0, 0.1);
+    --border-light: #E2E8F0;
+    --success: #38A169;
+    --warning: #E53E3E;
+    --highlight: #FFF9C4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    background: var(--card-bg);
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    padding: 24px;
+}
+
+/* Header com botão voltar */
+.header {
+    margin-bottom: 24px;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    background: var(--background);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.back-button:hover {
+    background: var(--primary-light);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.2);
+}
+
+.back-button i {
+    font-size: 16px;
+}
+
+/* Logo do Site */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.logo-circle {
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--text-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.logo-circle:hover {
+    border-color: var(--primary);
+    transform: scale(1.05);
+}
+
+.logo-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+}
+
+/* Foto do Salão */
+.salon-photo-container {
+    margin-bottom: 20px;
+}
+
+.salon-photo {
+    width: 100%;
+    height: 160px;
+    border: 2px solid var(--border-light);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--background);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 12px;
+}
+
+.salon-photo:hover {
+    border-color: var(--primary);
+    background: rgba(76, 175, 80, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow);
+}
+
+.salon-photo i {
+    font-size: 32px;
+    color: var(--text-light);
+}
+
+.photo-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 1px;
+}
+
+/* Localização no Google */
+.google-location-container {
+    margin-bottom: 32px;
+}
+
+.google-location {
+    width: 100%;
+    height: 80px;
+    border: 2px solid var(--border-light);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 12px;
+}
+
+.google-location:hover {
+    border-color: var(--primary);
+    background: rgba(76, 175, 80, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow);
+}
+
+.google-location i {
+    font-size: 24px;
+    color: var(--primary);
+}
+
+.location-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.5px;
+}
+
+/* Informações de Endereço */
+.address-info {
+    margin-bottom: 32px;
+    background: var(--background);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.address-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    gap: 4px;
+}
+
+.address-item:last-child {
+    margin-bottom: 0;
+}
+
+.address-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.address-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+/* Informações de Contato */
+.contact-info {
+    margin-bottom: 32px;
+    background: var(--background);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 8px 0;
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-item i {
+    font-size: 16px;
+    color: var(--primary);
+    width: 20px;
+    text-align: center;
+}
+
+.contact-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+/* Botões de Ação */
+.action-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-transform: uppercase;
+}
+
+.call-btn {
+    background: linear-gradient(to right, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.call-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+    background: linear-gradient(to right, var(--primary-dark), var(--primary));
+}
+
+.whatsapp-btn {
+    background: linear-gradient(to right, #25D366, #128C7E);
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+    background: linear-gradient(to right, #128C7E, #25D366);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn i {
+    font-size: 16px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 20px;
+        border-radius: 20px;
+        max-width: 100%;
+    }
+    
+    .logo-circle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .logo-text {
+        font-size: 12px;
+    }
+    
+    .salon-photo {
+        height: 140px;
+    }
+    
+    .salon-photo i {
+        font-size: 28px;
+    }
+    
+    .google-location {
+        height: 70px;
+    }
+    
+    .google-location i {
+        font-size: 20px;
+    }
+    
+    .location-label {
+        font-size: 12px;
+    }
+    
+    .address-info,
+    .contact-info {
+        padding: 16px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .action-btn {
+        padding: 14px 20px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 16px;
+    }
+    
+    .logo-circle {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .salon-photo {
+        height: 120px;
+    }
+    
+    .salon-photo i {
+        font-size: 24px;
+    }
+    
+    .photo-label,
+    .location-label {
+        font-size: 11px;
+    }
+    
+    .address-info,
+    .contact-info {
+        padding: 14px;
+    }
+    
+    .contact-text {
+        font-size: 13px;
+    }
+    
+    .address-value {
+        font-size: 13px;
+    }
+}
+

@@ -230,4 +230,315 @@ function finalizar(){
         alert("Por favor, selecione pelo menos um serviço antes de finalizar o agendamento.");
     }
 }
+/**
+ * Animação São Paulo - JavaScript
+ * 
+ * Este script controla as animações de hover e transição de página
+ * para o texto "São Paulo"
+ */
 
+// ========================================
+// CONFIGURAÇÃO - ALTERE AQUI A URL DE DESTINO
+// ========================================
+const REDIRECT_CONFIG = {
+    url: '../html/localizacao.html', // ← ALTERE ESTA URL para onde deseja redirecionar
+    delay: 2000, // Tempo em milissegundos antes do redirecionamento
+    enableParticles: true, // Ativar/desativar partículas no clique
+    enableSound: false // Ativar/desativar som (se disponível)
+};
+
+// ========================================
+// CLASSE PRINCIPAL DA ANIMAÇÃO
+// ========================================
+class SaoPauloAnimation {
+    constructor(textElement, overlayElement) {
+        this.textElement = textElement;
+        this.overlayElement = overlayElement;
+        this.isTransitioning = false;
+        
+        this.init();
+    }
+    
+    init() {
+        if (!this.textElement) {
+            console.error('Elemento de texto "São Paulo" não encontrado');
+            return;
+        }
+        
+        this.setupEventListeners();
+        this.prepareLetters();
+    }
+    
+    // Preparar letras individuais para animação
+    prepareLetters() {
+        const text = this.textElement.textContent;
+        this.textElement.innerHTML = '';
+        
+        for (let i = 0; i < text.length; i++) {
+            const letter = document.createElement('span');
+            letter.className = 'letter';
+            letter.textContent = text[i];
+            this.textElement.appendChild(letter);
+        }
+    }
+    
+    // Configurar event listeners
+    setupEventListeners() {
+        // Hover effects
+        this.textElement.addEventListener('mouseenter', () => this.onMouseEnter());
+        this.textElement.addEventListener('mouseleave', () => this.onMouseLeave());
+        
+        // Click effect
+        this.textElement.addEventListener('click', (e) => this.onClick(e));
+        
+        // Keyboard accessibility
+        this.textElement.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.onClick(e);
+            }
+        });
+        
+        // Tornar focável para acessibilidade
+        this.textElement.setAttribute('tabindex', '0');
+        this.textElement.setAttribute('role', 'button');
+        this.textElement.setAttribute("aria-label", "Clique para navegar para Breves, Pará, PA");
+    }
+    
+    // Evento de mouse enter
+    onMouseEnter() {
+        const letters = this.textElement.querySelectorAll('.letter');
+        letters.forEach((letter, index) => {
+            setTimeout(() => {
+                letter.style.animationDelay = `${index * 0.1}s`;
+            }, index * 50);
+        });
+    }
+    
+    // Evento de mouse leave
+    onMouseLeave() {
+        const letters = this.textElement.querySelectorAll('.letter');
+        letters.forEach(letter => {
+            letter.style.animationDelay = '0s';
+        });
+    }
+    
+    // Evento de clique
+    onClick(event) {
+        if (this.isTransitioning) return;
+        
+        this.isTransitioning = true;
+        
+        // Criar partículas se habilitado
+        if (REDIRECT_CONFIG.enableParticles) {
+            this.createClickParticles(event.clientX, event.clientY);
+        }
+        
+        // Reproduzir som se habilitado
+        if (REDIRECT_CONFIG.enableSound) {
+            this.playClickSound();
+        }
+        
+        // Iniciar transição
+        this.startPageTransition();
+    }
+    
+    // Criar partículas no clique
+    createClickParticles(x, y) {
+        const particleCount = 8;
+        const colors = ['#4CAF50', '#66BB6A', '#81C784', '#A5D6A7'];
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'click-particle';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.body.appendChild(particle);
+            
+            // Animar partícula
+            this.animateParticle(particle, i, particleCount);
+        }
+    }
+    
+    // Animar uma partícula individual
+    animateParticle(particle, index, total) {
+        const angle = (index / total) * Math.PI * 2;
+        const velocity = 150 + Math.random() * 100;
+        const vx = Math.cos(angle) * velocity;
+        const vy = Math.sin(angle) * velocity;
+        
+        let posX = parseFloat(particle.style.left);
+        let posY = parseFloat(particle.style.top);
+        let opacity = 1;
+        let scale = 1;
+        
+        const animate = () => {
+            posX += vx * 0.016;
+            posY += vy * 0.016 + 2; // Gravidade
+            opacity -= 0.025;
+            scale -= 0.02;
+            
+            particle.style.left = posX + 'px';
+            particle.style.top = posY + 'px';
+            particle.style.opacity = opacity;
+            particle.style.transform = `scale(${scale})`;
+            
+            if (opacity > 0 && scale > 0) {
+                requestAnimationFrame(animate);
+            } else {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }
+        };
+        
+        requestAnimationFrame(animate);
+    }
+    
+    // Reproduzir som do clique (opcional)
+    playClickSound() {
+        // Criar um tom sintético simples
+        if (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined') {
+            const audioContext = new (AudioContext || webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+    }
+    
+    // Iniciar transição de página
+    startPageTransition() {
+        if (!this.overlayElement) {
+            // Se não há overlay, redirecionar diretamente
+            setTimeout(() => {
+                this.redirect();
+            }, 500);
+            return;
+        }
+        
+        // Ativar overlay
+        this.overlayElement.classList.add('active');
+        
+        // Redirecionar após o delay configurado
+        setTimeout(() => {
+            this.redirect();
+        }, REDIRECT_CONFIG.delay);
+    }
+    
+    // Executar redirecionamento
+    redirect() {
+        if (REDIRECT_CONFIG.url && REDIRECT_CONFIG.url !== 'https://exemplo.com/destino') {
+            window.location.href = REDIRECT_CONFIG.url;
+        } else {
+            console.log('Redirecionamento simulado para:', REDIRECT_CONFIG.url);
+            alert('Configure a URL de destino no arquivo JavaScript!');
+            this.isTransitioning = false;
+            if (this.overlayElement) {
+                this.overlayElement.classList.remove('active');
+            }
+        }
+    }
+}
+
+// ========================================
+// FUNÇÕES UTILITÁRIAS
+// ========================================
+
+// Função para integrar com o projeto existente
+function integrateSaoPauloAnimation(selector = '.location .text') {
+    const textElement = document.querySelector(selector);
+    
+    if (!textElement) {
+        console.error(`Elemento não encontrado: ${selector}`);
+        return null;
+    }
+    
+    // Adicionar classes necessárias
+    textElement.classList.add('sao-paulo-text');
+    
+    // Criar overlay se não existir
+    let overlayElement = document.getElementById('page-transition-overlay');
+    if (!overlayElement) {
+        overlayElement = createTransitionOverlay();
+    }
+    
+    // Inicializar animação
+    return new SaoPauloAnimation(textElement, overlayElement);
+}
+
+// Criar overlay de transição
+function createTransitionOverlay() {
+    const overlay = document.createElement('div');
+    overlay.id = 'page-transition-overlay';
+    overlay.className = 'page-transition-overlay';
+    
+    overlay.innerHTML = `
+        <div class="transition-text">Redirecionando para Breves, Pará, PA...</div>
+        <div class="loading-spinner"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    `;
+    
+    document.body.appendChild(overlay);
+    return overlay;
+}
+
+// Função para configurar URL de destino dinamicamente
+function setSaoPauloRedirectUrl(url, delay = 2000) {
+    REDIRECT_CONFIG.url = url;
+    REDIRECT_CONFIG.delay = delay;
+}
+
+// Função para ativar/desativar partículas
+function setSaoPauloParticles(enabled) {
+    REDIRECT_CONFIG.enableParticles = enabled;
+}
+
+// Função para ativar/desativar som
+function setSaoPauloSound(enabled) {
+    REDIRECT_CONFIG.enableSound = enabled;
+}
+
+// ========================================
+// INICIALIZAÇÃO AUTOMÁTICA
+// ========================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Tentar integração automática com o projeto existente
+    const existingLocationText = document.querySelector('.location .text');
+    
+    if (existingLocationText && (existingLocationText.textContent.toLowerCase().includes('são paulo') || existingLocationText.textContent.toLowerCase().includes('breves, pará, pa'))) {
+        console.log('Integrando animação São Paulo automaticamente...');
+        integrateSaoPauloAnimation('.location .text');
+    }
+    
+    // Também procurar por elementos com ID ou classe específica
+    const saoPauloElements = document.querySelectorAll('#sao-paulo-text, .sao-paulo-text');
+    saoPauloElements.forEach(element => {
+        const overlay = document.getElementById('page-transition-overlay');
+        new SaoPauloAnimation(element, overlay);
+    });
+});
+
+// ========================================
+// EXPORTAR PARA USO GLOBAL
+// ========================================
+window.SaoPauloAnimation = SaoPauloAnimation;
+window.integrateSaoPauloAnimation = integrateSaoPauloAnimation;
+window.setSaoPauloRedirectUrl = setSaoPauloRedirectUrl;
+window.setSaoPauloParticles = setSaoPauloParticles;
+window.setSaoPauloSound = setSaoPauloSound;

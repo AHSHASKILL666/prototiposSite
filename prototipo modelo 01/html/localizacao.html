@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localização do Estabelecimento</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/localizacao.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header com botão voltar -->
+        <header class="header">
+            <button class="back-button" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+                VOLTAR
+            </button>
+        </header>
+
+        <!-- Logo do Site -->
+        <div class="logo-container">
+            <div class="logo-circle">
+                <span class="logo-text">logo do<br>site</span>
+            </div>
+        </div>
+
+        <!-- Foto do Salão -->
+        <div class="salon-photo-container">
+            <div class="salon-photo">
+                <i class="fas fa-store"></i>
+                <span class="photo-label">FOTO DO SALÃO</span>
+            </div>
+        </div>
+
+        <!-- Localização no Google -->
+        <div class="google-location-container">
+            <div class="google-location" onclick="openGoogleMaps()">
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="location-label">LOCALIZAÇÃO NO GOOGLE</span>
+            </div>
+        </div>
+
+        <!-- Informações de Endereço -->
+        <div class="address-info">
+            <div class="address-item">
+                <span class="address-label">BAIRRO:</span>
+                <span class="address-value">Centro</span>
+            </div>
+            <div class="address-item">
+                <span class="address-label">RUA:</span>
+                <span class="address-value">Rua das Flores, 123</span>
+            </div>
+            <div class="address-item">
+                <span class="address-label">PONTO DE REFERÊNCIA:</span>
+                <span class="address-value">Próximo ao Shopping Center</span>
+            </div>
+        </div>
+
+        <!-- Informações de Contato -->
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span class="contact-text">(11) 99999-9999</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <span class="contact-text">Seg - Sex: 8h às 18h | Sáb: 8h às 16h</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span class="contact-text">contato@salao.com.br</span>
+            </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="action-buttons">
+            <button class="action-btn call-btn" onclick="makeCall()">
+                <i class="fas fa-phone"></i>
+                LIGAR
+            </button>
+            <button class="action-btn whatsapp-btn" onclick="openWhatsApp()">
+                <i class="fab fa-whatsapp"></i>
+                WHATSAPP
+            </button>
+        </div>
+    </div>
+
+    <script src="../script/localizacao.js"></script>
+</body>
+</html>
+

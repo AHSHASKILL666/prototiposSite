@@ -757,3 +757,250 @@ body {
     }
 }
 
+.sao-paulo-container {
+    position: relative;
+    display: inline-block;
+}
+
+.sao-paulo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2D3748;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
+/* Efeito de brilho que passa sobre o texto no hover */
+.sao-paulo-text::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.6), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.sao-paulo-text:hover::before {
+    left: 100%;
+}
+
+/* Transformações no hover */
+.sao-paulo-text:hover {
+    transform: scale(1.05);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #4CAF50;
+}
+
+/* Efeito individual nas letras */
+.letter {
+    display: inline-block;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.sao-paulo-text:hover .letter {
+    animation: letterBounce 0.6s ease-in-out;
+}
+
+.letter:nth-child(1) { animation-delay: 0.1s; }
+.letter:nth-child(2) { animation-delay: 0.2s; }
+.letter:nth-child(3) { animation-delay: 0.3s; }
+.letter:nth-child(4) { animation-delay: 0.4s; }
+.letter:nth-child(5) { animation-delay: 0.5s; }
+.letter:nth-child(6) { animation-delay: 0.6s; }
+.letter:nth-child(7) { animation-delay: 0.7s; }
+.letter:nth-child(8) { animation-delay: 0.8s; }
+.letter:nth-child(9) { animation-delay: 0.9s; }
+
+@keyframes letterBounce {
+    0%, 100% { 
+        transform: translateY(0) rotateZ(0deg); 
+    }
+    25% { 
+        transform: translateY(-8px) rotateZ(2deg); 
+    }
+    75% { 
+        transform: translateY(-4px) rotateZ(-1deg); 
+    }
+}
+
+/* Efeito de pulso sutil */
+.sao-paulo-text:hover {
+    animation: textPulse 2s infinite;
+}
+
+@keyframes textPulse {
+    0%, 100% { 
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    }
+    50% { 
+        text-shadow: 0 4px 8px rgba(76, 175, 80, 0.4), 0 0 20px rgba(76, 175, 80, 0.3); 
+    }
+}
+
+/* Overlay para transição de página completa */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #4CAF50, #66BB6A, #81C784);
+    background-size: 400% 400%;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: gradientShift 3s ease infinite;
+}
+
+.page-transition-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Texto de transição */
+.transition-text {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    animation: fadeInOut 1.5s infinite;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 0.7; transform: translateY(-5px); }
+}
+
+/* Spinner de carregamento */
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 30px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Ondas concêntricas */
+.wave {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: waveExpand 2s linear infinite;
+}
+
+.wave:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.wave:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.wave:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+@keyframes waveExpand {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(6);
+        opacity: 0;
+    }
+}
+
+/* Partículas de clique */
+.click-particle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: #4CAF50;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    box-shadow: 0 0 6px rgba(76, 175, 80, 0.8);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sao-paulo-text {
+        font-size: 1.5rem;
+        letter-spacing: 0.08em;
+    }
+    
+    .transition-text {
+        font-size: 1.4rem;
+    }
+    
+    .loading-spinner {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sao-paulo-text {
+        font-size: 1.2rem;
+        letter-spacing: 0.05em;
+    }
+    
+    .transition-text {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    
+    .loading-spinner {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Integração com o tema existente */
+.sao-paulo-text.theme-integration {
+    color: var(--text, #2D3748);
+    font-family: var(--font-family, 'Nunito', sans-serif);
+}
+
+.sao-paulo-text.theme-integration:hover {
+    color: var(--primary, #4CAF50);
+}
+
+.page-transition-overlay.theme-integration {
+    background: linear-gradient(45deg, var(--primary, #4CAF50), var(--primary-light, #66BB6A));
+}
