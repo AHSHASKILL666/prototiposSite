@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Serviço</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/infor_servi.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header com botão voltar -->
+        <header class="header">
+            <button class="back-button" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+                VOLTAR
+            </button>
+        </header>
+
+        <!-- Carrossel de imagens -->
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-track" id="carousel-track">
+                    <div class="carousel-slide active">
+                        <div class="service-image-large green">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <div class="image-label">FOTO DEMONSTRATIVO</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="service-image-large orange">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <div class="image-label">ANTES E DEPOIS</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="service-image-large purple">
+                            <i class="fas fa-air-freshener"></i>
+                        </div>
+                        <div class="image-label">RESULTADO FINAL</div>
+                    </div>
+                </div>
+                
+                <!-- Controles do carrossel -->
+                <button class="carousel-btn prev-btn" id="prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next-btn" id="next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Indicadores -->
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                </div>
+                
+                <!-- Botão de expandir -->
+                <button class="expand-btn">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Informações do serviço -->
+        <div class="service-info">
+            <div class="service-header">
+                <div class="service-details">
+                    <h1 class="service-title">NOME DO SERVIÇO</h1>
+                    <div class="service-pricing">
+                        <span class="price-label">R$</span>
+                        <span class="price-value">VALOR</span>
+                    </div>
+                </div>
+                <button class="schedule-btn">
+                    AGENDAR PEDIDO
+                </button>
+            </div>
+        </div>
+
+        <!-- Seção de descrição -->
+        <div class="description-section">
+            <h2 class="description-title">DESCRIÇÃO</h2>
+            <div class="description-content">
+                <p>Este é um serviço premium que oferece uma experiência completa de cuidados pessoais. Nossa equipe especializada utiliza produtos de alta qualidade para garantir os melhores resultados.</p>
+                <p>O serviço inclui consulta personalizada, aplicação de técnicas modernas e acompanhamento pós-atendimento para sua total satisfação.</p>
+            </div>
+            <button class="learn-more-btn" id="learn-more-btn">
+                SAIBA MAIS
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            
+            <!-- Conteúdo expandido -->
+            <div class="expanded-content" id="expanded-content">
+                <div class="expanded-text">
+                    <h3>Detalhes do Serviço</h3>
+                    <ul>
+                        <li>Duração aproximada: 60 minutos</li>
+                        <li>Produtos utilizados: Premium e orgânicos</li>
+                        <li>Profissionais certificados</li>
+                        <li>Garantia de satisfação</li>
+                        <li>Acompanhamento pós-serviço</li>
+                    </ul>
+                    
+                    <h3>O que está incluído</h3>
+                    <ul>
+                        <li>Consulta inicial personalizada</li>
+                        <li>Aplicação do serviço principal</li>
+                        <li>Produtos de finalização</li>
+                        <li>Dicas de manutenção</li>
+                        <li>Agendamento de retorno (se necessário)</li>
+                    </ul>
+                    
+                    <h3>Cuidados especiais</h3>
+                    <p>Recomendamos evitar exposição solar excessiva nas primeiras 24 horas após o serviço. Utilize produtos específicos recomendados pelo profissional para manter os resultados por mais tempo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para o carrossel
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('carousel-track');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentSlide = 0;
+
+            function updateCarousel() {
+                // Atualizar posição do track
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Atualizar slides ativos
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentSlide);
+                });
+                
+                // Atualizar indicadores
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            // Botão anterior
+            prevBtn.addEventListener('click', function() {
+                currentSlide = currentSlide > 0 ? currentSlide - 1 : slides.length - 1;
+                updateCarousel();
+            });
+
+            // Botão próximo
+            nextBtn.addEventListener('click', function() {
+                currentSlide = currentSlide < slides.length - 1 ? currentSlide + 1 : 0;
+                updateCarousel();
+            });
+
+            // Indicadores
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', function() {
+                    currentSlide = index;
+                    updateCarousel();
+                });
+            });
+
+            // Auto-play (opcional)
+            setInterval(function() {
+                currentSlide = currentSlide < slides.length - 1 ? currentSlide + 1 : 0;
+                updateCarousel();
+            }, 5000);
+
+            // JavaScript para o botão "Saiba Mais"
+            const learnMoreBtn = document.getElementById('learn-more-btn');
+            const expandedContent = document.getElementById('expanded-content');
+            const chevronIcon = learnMoreBtn.querySelector('.fa-chevron-down');
+
+            learnMoreBtn.addEventListener('click', function() {
+                const isExpanded = expandedContent.classList.contains('expanded');
+                
+                if (isExpanded) {
+                    // Recolher
+                    expandedContent.classList.remove('expanded');
+                    chevronIcon.style.transform = 'rotate(0deg)';
+                    learnMoreBtn.querySelector('i').className = 'fas fa-chevron-down';
+                } else {
+                    // Expandir
+                    expandedContent.classList.add('expanded');
+                    chevronIcon.style.transform = 'rotate(180deg)';
+                    learnMoreBtn.querySelector('i').className = 'fas fa-chevron-up';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
